@@ -2,7 +2,7 @@
 #   python gelbooru scraper v1.1
 #   copyright 2014 qt
 #   this program is free software under the GNU GPL version 3
-#   usage: $program_name $url $output_dir
+#   usage: $program_name $url $output_dir $pages_to_scrape
 #
 #   KNOWN BUGS:
 #   - when dealing with a series of images the files can often be out of order
