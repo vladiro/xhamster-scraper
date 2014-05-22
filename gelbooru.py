@@ -1,5 +1,5 @@
 #============================================
-#   python gelbooru scraper v1
+#   python gelbooru scraper v1.1
 #   copyright 2014 qt
 #   this program is free software under the GNU GPL version 3
 #   usage: $program_name $url $output_dir
@@ -12,9 +12,7 @@
 #   - cant handle backslashes at the end of the output_dir argument
 #
 #   TODO:
-#   - add support for multiple pages in (pages go by multiples of 42)
 #   - port it to different sites
-#	- figure out why the fuck python subprocess is launching a version of this that doesnt exist
 #============================================
 
 import sys
@@ -43,7 +41,7 @@ def get_page(URL):
 		page_file.write(page)
 		return(page)
 	except:
-		print("fuck, cant retrieve and store file located at the given URL")
+		print("welp, cant retrieve and store file located at the given URL")
 		sys.exit()
 #----------------------------------------------------------------------------------------------------------------
 def build_list(index_file):
@@ -60,7 +58,7 @@ def build_list(index_file):
 			page_list.append("http://gelbooru.com/" + image_page_URL + i)
 		return(page_list)
 	except:
-		print("fuck, cant build wrapper page list")
+		print("welp, cant build wrapper page list")
 		sys.exit()
 #----------------------------------------------------------------------------------------------------------------
 def grab_files(page_list):
@@ -87,7 +85,7 @@ def grab_files(page_list):
 			image_file.write(image.read())
 			print(image_name + " saved")
 	except:
-		print("fuck, cant parse containers and/or save images")
+		print("welp, cant parse containers and/or save images")
 		sys.exit()
 #----------------------------------------------------------------------------------------------------------------
 #   main procedure
@@ -98,7 +96,7 @@ def grab_files(page_list):
 try:
 	gallery_URL, output_directory = sys.argv[1], sys.argv[2] + "/"
 except:
-	print("fuck, cant process arguments")
+	print("welp, cant process arguments")
 	sys.exit()
 	
 print("stage 0 complete")
@@ -109,7 +107,7 @@ try:
 	if not os.path.exists(output_directory):
 		os.makedirs(output_directory)
 except:
-	print("fuck, cant make target directory")
+	print("welp, cant make target directory")
 	sys.exit()
 print("stage 1 complete")
 
@@ -121,7 +119,7 @@ print(str(len(page_list)) + "  found")
 print("stage 3 complete")
 
 grab_files(page_list)
-print("stage 4 complete: fucking done")
+print("stage 4 complete: done")
 #----------------------------------------------------------------------------------------------------------------
 
 	

@@ -3,7 +3,6 @@
 #   copyright 2014 qt
 #   this program is free software under the GNU GPL version 3
 #   usage: $program_name $url $output_dir
-#	note: scrapes individual pages, not full galleries
 #
 #   KNOWN BUGS:
 #   - cant handle backslashes at the end of the output_dir argument
@@ -30,7 +29,7 @@ def get_page(URL):
 		page = request.urlopen(URL)
 		return(clean_page(page))
 	except:
-		print("fuck, cant retrieve and store file located at the given URL")
+		print("welp, cant retrieve and store file located at the given URL")
 		sys.exit()
 #----------------------------------------------------------------------------------------------------------------
 def build_list(index_file):
@@ -48,7 +47,7 @@ def build_list(index_file):
 			page_list.append(image_page_URL + i + ".html")
 		return(page_list)
 	except:
-		print("fuck, cant build wrapper page list")
+		print("welp, cant build wrapper page list")
 		sys.exit()
 #----------------------------------------------------------------------------------------------------------------
 def grab_files(page_list):
@@ -74,7 +73,7 @@ def grab_files(page_list):
 			image_file.write(image.read())
 			print(image_name + " saved")
 	except:
-		print("fuck, cant parse containers and/or save images")
+		print("welp, cant parse containers and/or save images")
 		sys.exit()
 #----------------------------------------------------------------------------------------------------------------
 #   main procedure
@@ -85,7 +84,7 @@ def grab_files(page_list):
 try:
 	gallery_URL, output_directory = sys.argv[1], sys.argv[2] + "/"
 except:
-	print("fuck, cant process arguments")
+	print("welp, cant process arguments")
 	sys.exit()
 	
 print("stage 0 complete")
@@ -96,7 +95,7 @@ try:
 	if not os.path.exists(output_directory):
 		os.makedirs(output_directory)
 except:
-	print("fuck, cant make target directory")
+	print("welp, cant make target directory")
 	sys.exit()
 print("stage 1 complete")
 
@@ -107,7 +106,7 @@ page_list = build_list(index_file)
 print("stage 3 complete")
 
 grab_files(page_list)
-print("stage 4 complete: fucking done")
+print("stage 4 complete: done")
 #----------------------------------------------------------------------------------------------------------------
 
 	
