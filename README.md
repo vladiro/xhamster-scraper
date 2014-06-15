@@ -12,6 +12,7 @@ using the scripts:
 	DO NOT end the folder string with a backslash
 
 planned for the future:
+
 	a windows GUI for the plebs out there :^)
 
 	a yaoiheaven scraper
