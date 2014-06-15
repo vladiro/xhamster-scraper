@@ -19,6 +19,9 @@ import sys
 import os
 import re
 from urllib import request
+
+
+images_per_page = 42
 #----------------------------------------------------------------------------------------------------------------
 #   utility functions
 #----------------------------------------------------------------------------------------------------------------
@@ -94,7 +97,7 @@ def grab_files(page_list):
 # stage 0
 # parse args
 try:
-	gallery_URL, output_directory = sys.argv[1], sys.argv[2] + "/"
+	gallery_URL, output_directory, pages = sys.argv[1], sys.argv[2] + "/", sys.argv[3]
 except:
 	print("welp, cant process arguments")
 	sys.exit()
@@ -111,21 +114,18 @@ except:
 	sys.exit()
 print("stage 1 complete")
 
-index_file = get_page(gallery_URL)
-print("stage 2 complete")
-
-page_list = build_list(index_file)
-print(str(len(page_list)) + "  found")
-print("stage 3 complete")
-
-grab_files(page_list)
-print("stage 4 complete: done")
-#----------------------------------------------------------------------------------------------------------------
-
+for i in range (0, int(pages)):
+	print("processing page " + str(i))
+	page_address = gallery_URL + "&pid=" + str(images_per_page * i)
 	
+	index_file = get_page(page_address)
+	print("stage 2 complete")
 
+	page_list = build_list(index_file)
+	print(str(len(page_list)) + "  found")
+	print("stage 3 complete")
 
-
-
-
-
+	grab_files(page_list)
+	print("stage 4 complete: page " + str(i) + " done")
+print("completely fucking done")
+#----------------------------------------------------------------------------------------------------------------
