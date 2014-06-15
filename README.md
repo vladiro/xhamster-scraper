@@ -13,5 +13,7 @@ using the scripts:
 
 planned for the future:
 	a windows GUI for the plebs out there :^)
+
 	a yaoiheaven scraper
+
 	multipage support for xhamster (not really a priority unless somebody asks for it)
