@@ -1,4 +1,4 @@
-#============================================
+#
 #   python xhamster gallery scraper v1.3
 #   copyright 2014 qt
 #   this program is free software under the GNU GPL version 3
@@ -9,19 +9,19 @@
 #
 #   TODO:
 #   - port it to different sites
-#============================================
+#
 import sys
 import os
 import re
 from urllib import request
-#----------------------------------------------------------------------------------------------------------------
+#
 #   utility functions
-#----------------------------------------------------------------------------------------------------------------
+#
 def clean_page(page):
 	return(str(page.read()).replace(r"\n", "\n")).replace(r"\r", "\r")
-#----------------------------------------------------------------------------------------------------------------
+#
 #   main functions
-#----------------------------------------------------------------------------------------------------------------
+#
 def get_page(URL):
 	#stage 2
 	#retrieve and return the index page
@@ -31,7 +31,7 @@ def get_page(URL):
 	except:
 		print("welp, cant retrieve and store file located at the given URL")
 		sys.exit()
-#----------------------------------------------------------------------------------------------------------------
+#
 def build_list(index_file):
 	#stage 3
 	#build and return a list of image container page URLs to grab
@@ -49,12 +49,12 @@ def build_list(index_file):
 	except:
 		print("welp, cant build wrapper page list")
 		sys.exit()
-#----------------------------------------------------------------------------------------------------------------
+#
 def grab_files(page_list):
 	#stage 4
 	#with each container URL get the file, search for the image and then save it
 	try:
-		search_expression = "(http://[a-z]{2}\.xhamster\.com/)(.*?\.jpg|.*?\.png|.*?\.gif|.*?\.jpeg)"
+		search_expression = "(http://[a-zA-Z0-9]{3}\.xhcdn\.com/)(.*?\.jpg|.*?\.png|.*?\.gif|.*?\.jpeg)"
 
 		for i in page_list:
 			wrapper_page = get_page(i)
@@ -75,9 +75,9 @@ def grab_files(page_list):
 	except:
 		print("welp, cant parse containers and/or save images")
 		sys.exit()
-#----------------------------------------------------------------------------------------------------------------
+#
 #   main procedure
-#----------------------------------------------------------------------------------------------------------------
+#
 
 # stage 0
 # parse args
@@ -107,4 +107,4 @@ print("stage 3 complete")
 
 grab_files(page_list)
 print("stage 4 complete: done")
-#----------------------------------------------------------------------------------------------------------------
+#
